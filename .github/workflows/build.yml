@@ -1,17 +1,16 @@
-name: Build ZMK Firmware
+name: ZMK Build
 
 on:
   push:
     branches:
       - main
-  pull_request:
-
+      
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout this (config) repo
+      - name: Checkout config repo
         uses: actions/checkout@v3
 
       - name: Checkout ZMK
@@ -19,14 +18,14 @@ jobs:
         with:
           repository: zmkfirmware/zmk
           path: zmk
-          ref: main  # 安定版。開発版にしたければ develop
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.10
 
-      - name: Install dependencies and build
+      - name: Build firmware
         run: |
           pip install west
           west init -l config
@@ -35,9 +34,8 @@ jobs:
           pip install -r zmk/zephyr/scripts/requirements.txt
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
-      - name: Upload firmware
+      - name: Upload .uf2
         uses: actions/upload-artifact@v3
         with:
           name: firmware
           path: build/keychron_b1_us/zephyr/zmk.uf2
-
