@@ -13,26 +13,21 @@ jobs:
       - name: Checkout config repo
         uses: actions/checkout@v4
 
-      - name: Checkout ZMK
-        uses: actions/checkout@v4
-        with:
-          repository: zmkfirmware/zmk
-          path: zmk
-          ref: main
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Build firmware
+      - name: Install dependencies and initialize west
         run: |
           pip install west
           west init -l .
           west update
-          export ZEPHYR_BASE=$PWD/zephyr
           west zephyr-export
-          pip install -r zmk/scripts/requirements.txt
+          pip install -r zephyr/scripts/requirements.txt
+
+      - name: Build firmware
+        run: |
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
       - name: Upload firmware
