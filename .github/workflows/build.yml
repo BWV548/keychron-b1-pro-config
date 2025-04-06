@@ -28,7 +28,7 @@ jobs:
       - name: Build firmware
         run: |
           pip install west
-          west init -l config
+          west init -l .
           west update
           west zephyr-export
           pip install -r zmk/scripts/requirements.txt
