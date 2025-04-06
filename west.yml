@@ -3,5 +3,6 @@ manifest:
     - name: zmk
       url: https://github.com/zmkfirmware/zmk.git
       revision: main
+      import: app/west.yml  # ←これを追加
   self:
     path: config
