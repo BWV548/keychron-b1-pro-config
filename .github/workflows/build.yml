@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,8 +34,8 @@ jobs:
           pip install -r zmk/zephyr/scripts/requirements.txt
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
-      - name: Upload .uf2
-        uses: actions/upload-artifact@v3
-        with:
-          name: firmware
-          path: build/keychron_b1_us/zephyr/zmk.uf2
+          - name: Upload firmware
+          uses: actions/upload-artifact@v3
+          with:
+            name: firmware
+            path: build/keychron_b1_us/zephyr/zmk.uf2
