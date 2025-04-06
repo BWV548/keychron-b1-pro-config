@@ -8,6 +8,7 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: west.yml
+
     - name: zmk
       remote: zmkfirmware
       revision: main
