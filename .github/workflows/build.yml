@@ -24,7 +24,7 @@ jobs:
           west init -l .
           west update
           west zephyr-export
-          pip install -r zephyr/scripts/requirements.txt
+          pip install -r zephyr/scripts/requirements-base.txt
 
       - name: Build firmware
         run: |
