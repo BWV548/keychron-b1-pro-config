@@ -31,7 +31,7 @@ jobs:
           west init -l config
           west update
           west zephyr-export
-          pip install -r zmk/zephyr/scripts/requirements.txt
+          pip install -r zmk/scripts/requirements.txt
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
       - name: Upload firmware
