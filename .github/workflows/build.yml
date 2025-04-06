@@ -11,35 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout config repo
+      - name: Checkout this (config) repo
         uses: actions/checkout@v3
 
-      - name: Clone ZMK
+      - name: Checkout ZMK
         uses: actions/checkout@v3
         with:
           repository: zmkfirmware/zmk
           path: zmk
-          ref: main
+          ref: main  # 安定版。開発版にしたければ develop
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.10
 
-      - name: Install west and dependencies
+      - name: Install dependencies and build
         run: |
           pip install west
           west init -l config
           west update
           west zephyr-export
           pip install -r zmk/zephyr/scripts/requirements.txt
-
-      - name: Build firmware
-        run: |
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
       - name: Upload firmware
         uses: actions/upload-artifact@v3
         with:
-          name: firmware-keychron_b1_us
+          name: firmware
           path: build/keychron_b1_us/zephyr/zmk.uf2
+
