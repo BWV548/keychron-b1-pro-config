@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout config repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Checkout ZMK
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: zmkfirmware/zmk
           path: zmk
@@ -35,7 +35,7 @@ jobs:
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
       - name: Upload firmware
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: firmware
           path: build/keychron_b1_us/zephyr/zmk.uf2
