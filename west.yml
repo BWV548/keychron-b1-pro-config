@@ -4,11 +4,15 @@ manifest:
       url-base: https://github.com/zmkfirmware
 
   projects:
+    - name: zephyr
+      remote: zmkfirmware
+      revision: main
+      import: west.yml
+
     - name: zmk
       remote: zmkfirmware
       revision: main
       path: zmk
-      import: app/west.yml
 
   self:
     path: config
