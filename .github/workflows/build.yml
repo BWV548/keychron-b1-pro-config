@@ -23,6 +23,7 @@ jobs:
           pip install west
           west init -l .
           west update
+          ls -R
           west zephyr-export
           pip install -r zephyr/scripts/requirements-base.txt
 
