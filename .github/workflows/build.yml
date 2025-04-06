@@ -28,6 +28,7 @@ jobs:
 
       - name: Build firmware
         run: |
+          ls zmk/app
           west build -s zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
       - name: Upload firmware
