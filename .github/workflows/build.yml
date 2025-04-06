@@ -9,4 +9,4 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      shield: keychron_b1_us
+      shield: 'keychron_b1_us'
