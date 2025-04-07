@@ -28,10 +28,14 @@ jobs:
 
       - name: 🔍Debug Show nanopb module.yml
         run: |
+          echo "===== pwd ====="
+          pwd
+          echo "===== ls -R modules/lib/nanopb ====="
+          ls -R modules/lib/nanopb || echo "modules/lib/nanopb not found"
           echo "===== module.yml ====="
-          cat modules/lib/nanopb/zephyr/module.yml || echo "not found"
-          cd modules/lib/nanopb
+          cat modules/lib/nanopb/zephyr/module.yml || echo "module.yml not found"
           echo "===== HEAD ====="
+          cd modules/lib/nanopb || exit 1
           git log -1 || echo "no log"
 
       - name: Build firmware
