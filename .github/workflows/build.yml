@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout config repo
         uses: actions/checkout@v4
+        with:
+          path: config
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -20,14 +22,16 @@ jobs:
 
       - name: Install dependencies and initialize west
         run: |
+          cd config
           pip install west
           west init -l .
           west update
           west zephyr-export
           pip install -r ../zephyr/scripts/requirements-base.txt
 
-      - name: 🔍Debug Show nanopb module.yml
+      - name: 🔍 Debug Show nanopb module.yml
         run: |
+          cd config
           echo "===== pwd ====="
           pwd
           echo "===== ls -R modules/lib/nanopb ====="
@@ -40,6 +44,7 @@ jobs:
 
       - name: Build firmware
         run: |
+          cd config
           ls ../zmk/app
           west build -s ../zmk/app -b keychron -d build/keychron_b1_us -- -DSHIELD=keychron_b1_us
 
@@ -47,4 +52,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: firmware
-          path: build/keychron_b1_us/zephyr/zmk.uf2
+          path: config/build/keychron_b1_us/zephyr/zmk.uf2
