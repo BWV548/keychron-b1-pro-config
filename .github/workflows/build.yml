@@ -34,9 +34,9 @@ jobs:
           echo "===== pwd ====="
           pwd
           echo "===== module.yml ====="
-          cat ../modules/lib/nanopb/zephyr/module.yml || echo "module.yml not found"
+          cat modules/lib/nanopb/zephyr/module.yml || echo "module.yml not found"
           echo "===== HEAD ====="
-          cd ../modules/lib/nanopb || exit 1
+          cd modules/lib/nanopb || exit 1
           git log -1 || echo "no log"
 
       - name: Build firmware
