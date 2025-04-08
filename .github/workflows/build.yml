@@ -31,7 +31,6 @@ jobs:
 
       - name: 🔍 Debug Show nanopb module.yml
         run: |
-          cd config
           echo "===== pwd ====="
           pwd
           echo "===== ls -R modules/lib/nanopb ====="
